@@ -7,11 +7,14 @@ BOX_NAME="ubuntu/focal64"
 
 Vagrant.configure("2") do |config|
 
+    # Node specs
     config.vm.box = BOX_NAME
     config.vm.provider "virtualbox" do |vb|
         vb.memory = 2048
         vb.cpus = 2
     end
+
+    # Install Microk8s & Docker on all nodes
     config.vm.provision "shell", inline: <<-EOF
         snap install microk8s --classic
         snap install docker
@@ -24,6 +27,7 @@ Vagrant.configure("2") do |config|
         chown root:root /root/.bash_aliases
     EOF
   
+    # Master node
     config.vm.define "master" do |master|
         master.vm.hostname = "master"
         master.vm.network "private_network", ip: MASTER_IP
@@ -35,8 +39,7 @@ Vagrant.configure("2") do |config|
         EOF
     end
 
-
-    # Kubernetes Worker Nodes
+    # Worker nodes
     (1..NUM_WORKER).each do |i|
         config.vm.define "worker#{i}" do |worker|
             worker.vm.box = BOX_NAME
@@ -50,4 +53,4 @@ Vagrant.configure("2") do |config|
             EOF
         end
     end
-  end
+end
