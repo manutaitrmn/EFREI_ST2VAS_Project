@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
             vb.name = "master"
         end
         master.vm.provision "shell", inline: <<-EOF
-            microk8s.add-node | grep #{MASTER_IP} | tee /vagrant/add_k8s
+            microk8s.add-node | grep #{MASTER_IP} | tee /vagrant/add_k8s.sh
         EOF
     end
 
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
                 v.name = "worker#{i}"
             end
             worker.vm.provision "shell", inline: <<-EOF
-                bash -x /vagrant/add_k8s
+                bash -x /vagrant/add_k8s.sh
             EOF
         end
     end
