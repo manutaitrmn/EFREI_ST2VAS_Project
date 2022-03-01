@@ -41,6 +41,7 @@ spec:
     app.kubernetes.io/part-of: kube-prometheus
   type: NodePort
 ```
+![](img/prometheus.png)
 
 # Grafana
 
