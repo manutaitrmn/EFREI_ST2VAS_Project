@@ -20,3 +20,22 @@ A vagrant script to build a pair of Ubuntu based VMs (master and worker) with Mi
 ![dashboard](img/7.png)
 ![dashboard](img/8.png)
 
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-np
+  namespace: monitoring
+spec:
+  ports:
+  - nodePort: 30090
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app.kubernetes.io/component: prometheus
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/part-of: kube-prometheus
+  type: NodePort
+```
