@@ -44,6 +44,7 @@ spec:
 ![dashboard](img/prometheus.png)
 
 # Grafana
+
 Grafana is enabled during the installation of the K8s cluster.
 Then this manifests is applied to expose the solution.
 ```yaml
