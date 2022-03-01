@@ -42,7 +42,7 @@ spec:
   type: NodePort
 ```
 
-![dashboard](img/prometheus.png)
+![](img/prometheus.png)
 
 # Grafana
 
