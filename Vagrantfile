@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
         snap install microk8s --classic
         snap install docker
         microk8s.status --wait-ready
-        microk8s.enable dns dashboard
+        microk8s.enable dns dashboard grafana
         usermod -a -G microk8s vagrant
         echo "alias kubectl='microk8s.kubectl'" > /home/vagrant/.bash_aliases
         chown vagrant:vagrant /home/vagrant/.bash_aliases
