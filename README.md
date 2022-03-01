@@ -50,17 +50,17 @@ Then this manifests is applied to expose the solution.
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-np
+  name: grafana-np
   namespace: monitoring
 spec:
   ports:
-  - nodePort: 30090
-    port: 9090
+  - nodePort: 30000
+    port: 3000
     protocol: TCP
-    targetPort: 9090
+    targetPort: 3000
   selector:
-    app.kubernetes.io/component: prometheus
-    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/component: grafana
+    app.kubernetes.io/name: grafana
     app.kubernetes.io/part-of: kube-prometheus
   type: NodePort
 ```
