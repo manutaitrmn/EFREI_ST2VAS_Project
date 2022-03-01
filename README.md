@@ -12,7 +12,7 @@ A vagrant script to build a pair of Ubuntu based VMs (master and worker) with Mi
 ### Check nodes from master
 ![Check status](img/4.png)
 
-### Enable dashboard and monitoring with grafana
+### Enable dashboard and dns
 ![Check status](img/5.png)
 ![Check status](img/6.png)
 
