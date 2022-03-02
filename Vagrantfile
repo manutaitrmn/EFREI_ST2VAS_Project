@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
             microk8s kubectl apply -f /vagrant/manifests/grafana-np.yaml
             microk8s kubectl apply -f /vagrant/manifests/prometheus-np.yaml
         EOF
-        config.vm.provision "shell", run: "always", inline: "<<-EOF
+        config.vm.provision "shell", run: "always", inline: <<-EOF
             microk8s kubectl -n kube-system describe secret $(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1) | grep token: | tr -s ' ' | cut -d ' ' -f 2 | tee /vagrant/token
             microk8s dashboard-proxy </dev/null &>/dev/null &"
         EOF
