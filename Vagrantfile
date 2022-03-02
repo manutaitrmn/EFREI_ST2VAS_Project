@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
         snap install microk8s --classic
         snap install docker
         microk8s.status --wait-ready
-        microk8s.enable dns dashboard grafana
+        microk8s.enable dns dashboard prometheus registry
         usermod -a -G microk8s vagrant
         echo "alias kubectl='microk8s.kubectl'" > /home/vagrant/.bash_aliases
         chown vagrant:vagrant /home/vagrant/.bash_aliases
@@ -36,9 +36,11 @@ Vagrant.configure("2") do |config|
         master.vm.provision "shell", inline: <<-EOF
             microk8s.add-node | grep #{MASTER_IP} | tee /vagrant/add_k8s.sh
             microk8s kubectl -n kube-system describe secret $(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1) | grep token: | tr -s ' ' | cut -d ' ' -f 2 | tee /vagrant/token
-            microk8s dashboard-proxy </dev/null &>/dev/null &
             microk8s kubectl apply -f /vagrant/manifests/grafana-np.yaml
             microk8s kubectl apply -f /vagrant/manifests/prometheus-np.yaml
+        EOF
+        config.vm.provision "shell", run: "always", inline: "<<-EOF
+            microk8s dashboard-proxy </dev/null &>/dev/null &"
         EOF
     end
 
