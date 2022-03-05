@@ -17,6 +17,6 @@ vagrant ssh master
 setsid /vagrant/dashboard.sh >/dev/null 2>&1 < /dev/null &
 ```
 ## Dashboards
-- k8s dashboard: [](10.0.0.100:10443)
-- Prometheus: [](10.0.0.100:30090)
-- Grafana: [](10.0.0.100:30000)
+- k8s dashboard: [10.0.0.100:10443](10.0.0.100:10443)
+- Prometheus: [10.0.0.100:30090](10.0.0.100:30090)
+- Grafana: [10.0.0.100:30000](10.0.0.100:30000)
