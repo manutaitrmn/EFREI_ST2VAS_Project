@@ -11,7 +11,7 @@ A vagrant script to build a pair of Ubuntu based VMs (master and worker) with Mi
 ```bash
 vagrant up
 ```
-Note: a token file will be generated in the project folder, copy it and paste it on the k8s dashboard to log in.
+> Note: a token file will be generated in the project folder, copy it and paste it on the k8s dashboard to log in.
 
 ## In order to access the k8s dashboard from host
 ```bash
