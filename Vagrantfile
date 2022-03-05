@@ -37,9 +37,10 @@ Vagrant.configure("2") do |config|
             microk8s.add-node | grep #{MASTER_IP} | tee /vagrant/add_k8s.sh
             microk8s kubectl apply -f /vagrant/manifests/grafana-np.yaml
             microk8s kubectl apply -f /vagrant/manifests/prometheus-np.yaml
-        EOF
-        config.vm.provision "shell", run: "always", inline: <<-EOF
             microk8s kubectl -n kube-system describe secret $(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1) | grep token: | tr -s ' ' | cut -d ' ' -f 2 | tee /vagrant/token
+        EOF
+        master.vm.provision "shell", run: "always", inline: <<-EOF
+            setsid /vagrant/dashboard.sh >/dev/null 2>&1 < /dev/null &
         EOF
     end
 
