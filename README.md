@@ -7,15 +7,18 @@ A vagrant script to build a pair of Ubuntu based VMs (master and worker) with Mi
 
 # Execution steps
 
-## Start and create the K8s cluster
+## Start and create the k8s cluster
 ```bash
 vagrant up
 ```
-## Open ports for the k8s dashboard
+Note: a token file will be generated in the project folder, copy it and paste it on the k8s dashboard to log in.
+
+## In order to access the k8s dashboard from host
 ```bash
 vagrant ssh master
 setsid /vagrant/dashboard.sh >/dev/null 2>&1 < /dev/null &
 ```
+
 ## Dashboards
 - k8s dashboard: [10.0.0.100:10443](10.0.0.100:10443)
 - Prometheus: [10.0.0.100:30090](10.0.0.100:30090)
