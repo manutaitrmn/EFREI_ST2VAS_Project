@@ -8,6 +8,10 @@ A vagrant script to build a pair of Ubuntu based VMs (master and worker) with Mi
 vagrant up
 ```
 
+## Prerequisites
+ - Vagrant
+ - Virtualbox
+
 ## Check status
 ![Check status](img/1.png)
 
